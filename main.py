@@ -9,7 +9,7 @@ MY_LONG = -0.127758 # Your longitude
 password = "gsgbgbeqxnwlvibq"
 
 def is_iss_overhead():
-    response = requests.get(url="http://api.open-notify.org/iss-now.json")
+    response = requests.get(url="http://api.open-notify.org/iss-now.json", timeout=60)
     response.raise_for_status()
     data = response.json()
 
@@ -28,7 +28,7 @@ def is_night():
         "formatted": 0,
     }
 
-    response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
+    response = requests.get("https://api.sunrise-sunset.org/json", params=parameters, timeout=60)
     response.raise_for_status()
     data = response.json()
     sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
